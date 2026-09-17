@@ -1,0 +1,29 @@
+{
+  "nuclide": "U238",
+  "library": "ENDF/B-VIII.1",
+  "source_file": "/home/patri/openmc/data/endf-b8.1-hdf5/neutron/U238.h5",
+  "source_sha256": "d6e8d35ec3812dbb44b063594a2d3fd84fd84d9f668bec8dfaeecc2abf1c3f8e",
+  "openmc_version": "0.15.4.dev59+g6041ee6ae",
+  "temperature_key": "294K",
+  "temperature_K": 293.59430848016336,
+  "rows": 155058,
+  "energy_range_eV": [
+    9.999999999999999e-06,
+    30000000.0
+  ],
+  "csv_files": {
+    "fission": "U238_fission_294K.csv",
+    "gamma": "U238_gamma_294K.csv"
+  },
+  "reaction_MT": {
+    "fission": 18,
+    "gamma": 102
+  },
+  "columns": {
+    "energy_eV": "Incident neutron energy, eV",
+    "cross_section_barns": "Microscopic reaction cross section, barns"
+  },
+  "method": "OpenMC IncidentNeutron.from_hdf5; native full temperature energy grid, without rebinning or downsampling. Zero below a reaction threshold. CSV round-trip and native reaction ordinates verified.",
+  "note": "Pointwise evaluated microscopic cross sections, not spectrum-averaged or self-shielded group constants. Unresolved-resonance probability tables are not sampled. Zero values are retained in CSV and masked on the logarithmic plot.",
+  "openmc_documentation": "https://docs.openmc.org/en/stable/pythonapi/generated/openmc.data.IncidentNeutron.html"
+}

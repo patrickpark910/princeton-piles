@@ -1,0 +1,36 @@
+{
+  "element": "natural boron",
+  "reaction": "radiative capture (n,gamma)",
+  "MT": 102,
+  "library": "ENDF/B-VIII.1",
+  "temperature_key": "294K",
+  "temperature_K": 293.59430848016336,
+  "openmc_version": "0.15.4.dev59+g6041ee6ae",
+  "isotope_atom_fractions": {
+    "B10": 0.1982,
+    "B11": 0.8018
+  },
+  "abundance_source": "openmc.data.NATURAL_ABUNDANCE",
+  "sources": {
+    "B10": {
+      "path": "/home/patri/openmc/data/endf-b8.1-hdf5/neutron/B10.h5",
+      "sha256": "dab256fa4794c8077ccca28a5f8e254d2ee99a1c0d95d11453cdc5b1cf01190e"
+    },
+    "B11": {
+      "path": "/home/patri/openmc/data/endf-b8.1-hdf5/neutron/B11.h5",
+      "sha256": "a71a75fa4cdbab173ce9f463293e664eddea501263155c98d643e646edf7937a"
+    }
+  },
+  "rows": 3859,
+  "energy_range_eV": [
+    9.999999999999999e-06,
+    20000000.0
+  ],
+  "columns": {
+    "energy_eV": "Incident neutron energy in eV",
+    "cross_section_barns": "Microscopic capture cross section in barns per natural B atom"
+  },
+  "method": "Sum of isotope MT 102 cross sections weighted by natural atom fractions, evaluated with OpenMC on the union of all isotope capture knots within the common supported energy range. No downsampling.",
+  "note": "Pointwise cross sections; no self-shielding or spectrum averaging. Unresolved-resonance probability tables are not sampled.",
+  "checks": "Abundances sum to one; all isotopes have matching temperatures; weighted mixture matches independent linear interpolation; CSV round-trip preserves every value."
+}

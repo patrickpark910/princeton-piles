@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<materials>
+  <material id="5" name="Borated polyethylene" temperature="294">
+    <density value="1.0" units="g/cm3"/>
+    <nuclide name="C12" wo="0.8037105280617235"/>
+    <nuclide name="C13" wo="0.009756030453891213"/>
+    <nuclide name="H1" wo="0.13649095332167072"/>
+    <nuclide name="H2" wo="4.248816271453669e-05"/>
+    <nuclide name="B10" wo="0.00917774793753663"/>
+    <nuclide name="B11" wo="0.04082225206246337"/>
+    <sab name="c_H_in_CH2"/>
+  </material>
+</materials>

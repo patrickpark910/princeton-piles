@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<materials>
+  <material id="6" name="ClLiF" temperature="900">
+    <density value="1.55" units="g/cm3"/>
+    <nuclide name="Li6" ao="0.07589"/>
+    <nuclide name="Li7" ao="0.92411"/>
+    <nuclide name="Cl35" ao="0.06949999999999998"/>
+    <nuclide name="Cl37" ao="0.6255"/>
+    <nuclide name="F19" ao="0.30500000000000005"/>
+  </material>
+</materials>

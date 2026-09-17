@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<geometry>
+  <cell id="10" name="source region" material="void" region="25 -26 29 -30 31 -32" universe="4"/>
+  <cell id="11" name="teflon wall" material="15" region="26 -27 29 -30 31 -32" universe="4"/>
+  <cell id="12" name="downstream region" material="void" region="27 -28 29 -30 31 -32" universe="4"/>
+  <surface id="25" type="x-plane" boundary="vacuum" coeffs="-1.0"/>
+  <surface id="26" type="x-plane" coeffs="0.0"/>
+  <surface id="27" type="x-plane" coeffs="100.0"/>
+  <surface id="28" type="x-plane" boundary="vacuum" coeffs="101.0"/>
+  <surface id="29" type="y-plane" boundary="reflective" coeffs="-0.5"/>
+  <surface id="30" type="y-plane" boundary="reflective" coeffs="0.5"/>
+  <surface id="31" type="z-plane" boundary="reflective" coeffs="-0.5"/>
+  <surface id="32" type="z-plane" boundary="reflective" coeffs="0.5"/>
+</geometry>

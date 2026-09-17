@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<geometry>
+  <cell id="13" name="source region" material="void" region="33 -34 37 -38 39 -40" universe="5"/>
+  <cell id="14" name="grphC wall" material="20" region="34 -35 37 -38 39 -40" universe="5"/>
+  <cell id="15" name="downstream region" material="void" region="35 -36 37 -38 39 -40" universe="5"/>
+  <surface id="33" type="x-plane" boundary="vacuum" coeffs="-1.0"/>
+  <surface id="34" type="x-plane" coeffs="0.0"/>
+  <surface id="35" type="x-plane" coeffs="100.0"/>
+  <surface id="36" type="x-plane" boundary="vacuum" coeffs="101.0"/>
+  <surface id="37" type="y-plane" boundary="reflective" coeffs="-0.5"/>
+  <surface id="38" type="y-plane" boundary="reflective" coeffs="0.5"/>
+  <surface id="39" type="z-plane" boundary="reflective" coeffs="-0.5"/>
+  <surface id="40" type="z-plane" boundary="reflective" coeffs="0.5"/>
+</geometry>

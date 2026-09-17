@@ -1,0 +1,66 @@
+{
+  "element": "natural cadmium",
+  "reaction": "radiative capture (n,gamma)",
+  "MT": 102,
+  "library": "ENDF/B-VIII.1",
+  "temperature_key": "294K",
+  "temperature_K": 293.59430848016336,
+  "openmc_version": "0.15.4.dev59+g6041ee6ae",
+  "isotope_atom_fractions": {
+    "Cd106": 0.01245,
+    "Cd108": 0.00888,
+    "Cd110": 0.1247,
+    "Cd111": 0.12795,
+    "Cd112": 0.24109,
+    "Cd113": 0.12227,
+    "Cd114": 0.28754,
+    "Cd116": 0.07512
+  },
+  "abundance_source": "openmc.data.NATURAL_ABUNDANCE",
+  "sources": {
+    "Cd106": {
+      "path": "/home/patri/openmc/data/endf-b8.1-hdf5/neutron/Cd106.h5",
+      "sha256": "f5485a49a94dc9489b70cc5adae8db8ea04d3e94c8599e98784bf34b01b2de43"
+    },
+    "Cd108": {
+      "path": "/home/patri/openmc/data/endf-b8.1-hdf5/neutron/Cd108.h5",
+      "sha256": "f28989b8083c69342870f9e31a7996cdc7f5672a7abacdd3662dc7227cd8f1bc"
+    },
+    "Cd110": {
+      "path": "/home/patri/openmc/data/endf-b8.1-hdf5/neutron/Cd110.h5",
+      "sha256": "cc88789affc60b59c82d9d587b9bfe6cae791005fdb79db424fc84ec89cba487"
+    },
+    "Cd111": {
+      "path": "/home/patri/openmc/data/endf-b8.1-hdf5/neutron/Cd111.h5",
+      "sha256": "705aea83d699c7d9d1ecc9a080a0b2c559fe1bfa406d9e1c57883494f3b3fd01"
+    },
+    "Cd112": {
+      "path": "/home/patri/openmc/data/endf-b8.1-hdf5/neutron/Cd112.h5",
+      "sha256": "f4e6490b19a879a27e99cc8476069ef135dadf0c821dc6d5b102176739e42910"
+    },
+    "Cd113": {
+      "path": "/home/patri/openmc/data/endf-b8.1-hdf5/neutron/Cd113.h5",
+      "sha256": "0fa15b19ab1d7ed633113c14b3338fad535b79eaad7d13056a19609a4b9851d1"
+    },
+    "Cd114": {
+      "path": "/home/patri/openmc/data/endf-b8.1-hdf5/neutron/Cd114.h5",
+      "sha256": "fbf661496441f42eec251e22fafde8fec39f8d03fb6f1dcb523d269c023ec077"
+    },
+    "Cd116": {
+      "path": "/home/patri/openmc/data/endf-b8.1-hdf5/neutron/Cd116.h5",
+      "sha256": "8d286effa5700790747a9a9982b9225aaa2bcdb2173bb42bdb7b1f57caec29e7"
+    }
+  },
+  "rows": 137408,
+  "energy_range_eV": [
+    9.999999999999999e-06,
+    20000000.0
+  ],
+  "columns": {
+    "energy_eV": "Incident neutron energy in eV",
+    "cross_section_barns": "Microscopic capture cross section in barns per natural Cd atom"
+  },
+  "method": "Sum of isotope MT 102 cross sections weighted by natural atom fractions, evaluated with OpenMC on the union of all isotope capture knots within the common supported energy range. No downsampling.",
+  "note": "Pointwise cross sections; no self-shielding or spectrum averaging. Unresolved-resonance probability tables are not sampled.",
+  "checks": "Abundances sum to one; all isotopes have matching temperatures; weighted mixture matches independent linear interpolation; CSV round-trip preserves every value."
+}
