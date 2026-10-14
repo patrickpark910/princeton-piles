@@ -9,20 +9,24 @@ from abc import ABC, abstractmethod
 from python.parameters import *
 from python.utilities  import *
 from python.geometries import Geometry
-from python.tallies   import Tally
+from python.tallies    import Tally
+from python.settings   import Settings
 
 
-class Pile(Geometry, Tally, ABC):
+class Pile(Geometry, Tally, Settings, ABC):
 
-    def __init__(self, pile_code, fertile_kgm3=0.0, fertile_isotope='U238', lithium_enrich=None, run_type='tallies', n_particles=N_PARTICLES, n_cycles=N_CYCLES, print_xml=True, run_openmc=True, run_debug=True):
+    def __init__(self, pile_code, breeder, temp_k=TEMP_K,
+                 fertile_kgm3=0.0, fertile_isotope='U238', li_enrich=None, 
+                 run_type='tallies', n_particles=N_PARTICLES, n_cycles=N_CYCLES, 
+                 print_xml=True, run_openmc=True, run_debug=True):
 
         self.fertile_kgm3 = fertile_kgm3
         self.fertile_isotope = fertile_isotope
-        
-        if self.fertile_isotope == 'U238': 
-            self.fissile_isotope = 'Pu239'
-        elif self.fertile_isotope == 'Th232': 
-            self.fissile_isotope = 'U233'
+        self.fissile_isotope = FISSILE.get(fertile_isotope, None)
+        self.li_enrich = li_enrich
+        self.temp_k  = temp_k
+        self.breeder = breeder
+        self.breeder_density = None 
 
         self.pile_code   = pile_code
         self.run_type    = run_type
@@ -32,14 +36,12 @@ class Pile(Geometry, Tally, ABC):
         self.n_particles = n_particles
         self.n_cycles    = n_cycles
 
-        # All class templates must define these variables:
-        self.temp_k          = None           # TEMP_K
-        self.pile_code       = None
-        self.blanket_volume  = None           # ARC_BL_VOL    # m³
-        self.breeder_density = None           # DENSITY_FLIBE # g/cm³
-        self.breeder_enrich  = lithium_enrich # ENRICH_FLIBE  # wt%
-        self.name = None # f"{self.run_type}_{self.blanket_name}_{self.temp_k}K_Li{self.breeder_enrich:04.1f}_{self.fertile_isotope}{self.fertile_kgm3:07.2f}kgm3"
+        s = f"{self.n_particles:.0e}x{self.n_cycles}".replace("+0", "").replace("+", "")
+        self.name = f"{pile_code}_{run_type}_{breeder}_{temp_k}K_Li{li_enrich:04.1f}_{fertile_isotope}_{fertile_kgm3:07.2f}kgm3_{s}"    
         self.path = None # f"./OpenMC/{self.name}"
+
+        start_msg = f"\n======== {self.blanket_name} blanket - {self.fertile_isotope} {self.fertile_kgm3:07.2f} kg/m3 - {self.breeder_enrich:4.1f}%-enriched Li - {self.temp_k} K ========"
+        print(f"{C.CYAN}{start_msg}{C.END}")
 
 
     @abstractmethod
@@ -48,32 +50,7 @@ class Pile(Geometry, Tally, ABC):
 
 
 
-    def settings(self):
-        """ SETTINGS """
-       
-        source = openmc.IndependentSource()
-        source.space = openmc.stats.CylindricalIndependent(
-                                      r=openmc.stats.Discrete([self.R0], [1.0]),  # r = R0 major radius [cm]
-                                    phi=openmc.stats.Uniform(0.0, 2*np.pi)   ,  # phi = 0 to 2pi
-                                      z=openmc.stats.Discrete([0.0], [1.0])   ) # z   = 0
-                                                          
-        source.particle = 'neutron'
-        source.energy   = openmc.stats.Discrete([14.0e6], [1.0])  # 14 MeV
-        source.angle    = openmc.stats.Isotropic()
 
-        # Create settings and assign source
-        self.settings = openmc.Settings()
-        self.settings.source = source
-
-        """ Run type """
-        self.settings.run_mode  = 'fixed source'
-        self.settings.particles = self.n_particles
-        self.settings.batches   = self.n_cycles
-
-        """ Dump data to statepoint intermittently to allow restarts later """
-        save_sp_every = 5
-        self.settings.statepoint = {'batches': range(save_sp_every, self.n_cycles + 1, save_sp_every)} 
-        self.settings.output     = {'summary': False, 'tallies': False}
 
 
     def compile(self):

@@ -8,6 +8,10 @@ FERTILE_KGM3 = [0.0, 0.01, 0.10, 1, 10, 100]
 BLANKETS     = ['flibe','cllif','grph','pbli','pebble']
 ISOTOPES     = ['U238', 'Th232']
 TEMP_K       = 900   # use 294 K for room temp (to align with endf available temps)
+N_PARTICLES  = 1e5
+N_CYCLES     = 100
+
+FISSILE = {'U238':'Pu239', 'Th232':'U233'}
 
 
 # ------------------------------------------------
