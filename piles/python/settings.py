@@ -2,19 +2,17 @@ import openmc
 
 class Settings:
     
-    def settings(self):
+    def build_settings(self):
 
-        if self.pile_code == 'A01':
+        if self.pile_code == 'a01':
        
-            source = openmc.IndependentSource()
-            source.space = openmc.stats.CylindricalIndependent(
-                                        r=openmc.stats.Discrete([self.R0], [1.0]),  # r = R0 major radius [cm]
-                                        phi=openmc.stats.Uniform(0.0, 2*np.pi)   ,  # phi = 0 to 2pi
-                                        z=openmc.stats.Discrete([0.0], [1.0])   ) # z   = 0
-                                                            
-            source.particle = 'neutron'
-            source.energy   = openmc.stats.Discrete([14.0e6], [1.0])  # 14 MeV
-            source.angle    = openmc.stats.Isotropic()
+            source = openmc.IndependentSource(particle="neutron",
+                                                 space=openmc.stats.CartesianIndependent(
+                                                     x=openmc.stats.Uniform(-10.0, 10.0),
+                                                     y=openmc.stats.Uniform(-10.0, 10.0),
+                                                     z=openmc.stats.Discrete([1e-6], [1.0]),),
+                                                 angle=openmc.stats.Monodirectional((0.0, 0.0, 1.0)),
+                                                energy=openmc.stats.Discrete([14.1e6], [1.0]),)
 
         # Create settings and assign source
         self.settings = openmc.Settings()
@@ -27,5 +25,6 @@ class Settings:
 
         # Dump data to statepoint intermittently to allow restarts later 
         save_sp_every = 5
-        self.settings.statepoint = {'batches': range(save_sp_every, self.n_cycles + 1, save_sp_every)} 
+        self.settings.statepoint = {'batches': sorted(
+            set(range(save_sp_every, self.n_cycles + 1, save_sp_every)) | {self.n_cycles})}
         self.settings.output     = {'summary': False, 'tallies': False}

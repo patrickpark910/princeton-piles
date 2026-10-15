@@ -1,0 +1,82 @@
+{
+  "source_rate_neutrons_per_s": null,
+  "spectrum_array_order": [
+    "v_pixel",
+    "u_pixel",
+    "energy_bin"
+  ],
+  "pixel_index_base": 0,
+  "spectrum_units": "neutrons / pixel / source neutron / energy bin",
+  "current_units": "neutrons / pixel / source neutron",
+  "current_density_units": "neutrons / cm2 / source neutron",
+  "statistical_error": "One standard error of the estimated mean",
+  "batches": 10,
+  "map_axes": "Global coordinates; no face is mirrored.",
+  "mode_definition": "Maximum dJ/d(ln E) over finite positive energy bins",
+  "mode_bin_max_relative_error": 0.5,
+  "mode_reliable_note": "This tests precision in the selected bin, not separation from competing peaks.",
+  "guard_bins": "First: [0, minimum). Last: [maximum, 1e30 eV]. Included in spectra and currents; excluded from log-energy mode.",
+  "current_uncertainty": "Taken from an independent energy-integrated tally; energy-bin covariance is not discarded.",
+  "faces": {
+    "x_min": {
+      "shape_v_u_energy": [
+        50,
+        20,
+        302
+      ],
+      "total_neutrons_per_source": 0.22114000000000006,
+      "guard_neutrons_per_source": 0.0,
+      "reliable_mode_pixels": 339
+    },
+    "x_max": {
+      "shape_v_u_energy": [
+        50,
+        20,
+        302
+      ],
+      "total_neutrons_per_source": 0.22188000000000002,
+      "guard_neutrons_per_source": 0.0,
+      "reliable_mode_pixels": 356
+    },
+    "y_min": {
+      "shape_v_u_energy": [
+        50,
+        20,
+        302
+      ],
+      "total_neutrons_per_source": 0.21660000000000001,
+      "guard_neutrons_per_source": 0.0,
+      "reliable_mode_pixels": 347
+    },
+    "y_max": {
+      "shape_v_u_energy": [
+        50,
+        20,
+        302
+      ],
+      "total_neutrons_per_source": 0.22306,
+      "guard_neutrons_per_source": 0.0,
+      "reliable_mode_pixels": 350
+    },
+    "z_min": {
+      "shape_v_u_energy": [
+        20,
+        20,
+        302
+      ],
+      "total_neutrons_per_source": 0.14808000000000002,
+      "guard_neutrons_per_source": 0.0,
+      "reliable_mode_pixels": 122
+    },
+    "z_max": {
+      "shape_v_u_energy": [
+        20,
+        20,
+        302
+      ],
+      "total_neutrons_per_source": 0.014010000000000002,
+      "guard_neutrons_per_source": 0.0,
+      "reliable_mode_pixels": 9
+    }
+  }
+}
