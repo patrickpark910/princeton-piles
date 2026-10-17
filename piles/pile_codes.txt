@@ -1,4 +1,8 @@
-
 Code    Description
----------------------------------
-A       14 MeV planar source; TRISO in regular lattice
+-----------------------------------------------------------------------
+A       14 MeV planar source; TRISO in regular lattice;
+        fixed source calculation
+A01     -- neutron leakage map
+A02     -- prompt and decay gammas at the end of 1 hr irradiation, source on (R2S)
+A03     -- gamma X hrs after beam shut-off using D1S (photoneutron)
+A04     -- gamma X hrs after beam shut-off using R2S (photoneutron)

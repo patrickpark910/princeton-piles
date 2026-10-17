@@ -17,12 +17,20 @@ from python.neutron_exit import exit_grid_id, export_exit_maps
 
 class Pile(Material, Geometry, Tally, Settings, ABC):
 
-    def __init__(self, pile_code, breeder, temp_k=TEMP_K,
-                 fertile_kgm3=0.0, fertile_isotope='U238', li_enrich=None, 
-                 run_type='tallies', n_particles=N_PARTICLES, n_cycles=N_CYCLES, 
-                 print_xml=True, run_openmc=True, run_debug=True,
-                 exit_pixel_cm=EXIT_PIXEL_CM, exit_energy_bins=EXIT_ENERGY_BINS,
-                 source_rate=None):
+    def __init__(self, pile_code, breeder, 
+                 temp_k=TEMP_K,
+                 fertile_kgm3=0.0, 
+                 fertile_isotope='U238', 
+                 li_enrich=None, 
+                 run_type='tallies', 
+                 n_particles=N_PARTICLES, 
+                 n_cycles=N_CYCLES, 
+                 print_xml=True, 
+                 run_openmc=True, 
+                 run_debug=True,
+                 exit_pixel_cm=EXIT_PIXEL_CM, 
+                 exit_energy_bins=EXIT_ENERGY_BINS,
+                 source_rate=EXCALIBUR_SOURCE_RATE):
 
         self.fertile_kgm3    = fertile_kgm3
         self.fertile_isotope = fertile_isotope
@@ -51,7 +59,7 @@ class Pile(Material, Geometry, Tally, Settings, ABC):
         run_size = f"{self.n_particles:.0e}x{self.n_cycles}".replace("+0", "").replace("+", "")
         self.name = f"{pile_code}_{breeder}_{temp_k}K_{fertile_isotope}_{fertile_kgm3:07.2f}kgm3_{run_size}"    
         # Keep statepoints without exit tallies in their original directories.
-        if run_type == 'tallies':
+        if run_type == 'tallies' and pile_code != 'a02':
             self.name += f"_exit{exit_pixel_cm:g}cm_{exit_energy_bins}g_{exit_grid_id(exit_pixel_cm, exit_energy_bins)}"
         self.path = DIR_OPENMC/self.name
 

@@ -54,8 +54,11 @@ def main():
                         help="Maximum neutron exit pixel width in cm (default: 1)")
     parser.add_argument("--exit_energy_bins", type=int, default=EXIT_ENERGY_BINS,
                         help="Number of logarithmic exit energy bins (default: 300)")
-    parser.add_argument("--source_rate", type=float, default=None,
-                        help="Source rate in neutrons/s; otherwise maps are per source neutron")
+
+    parser.add_argument("--chain_file", type=str, default=None,
+                        help="Depletion chain for a02 (default: chain_endfb81_fast.xml beside the XS directory)")
+    parser.add_argument("--gamma_energy_bins", type=int, default=1000,
+                        help="Number of log photon energy bins for a02")
 
     # Set defaults for the 'dest' targets above so they are True unless the flag is used
     parser.set_defaults(print_xml=True, run_openmc=True, run_debug=True)
@@ -106,12 +109,17 @@ def main():
                                        run_openmc=run_openmc,
                                        run_debug=run_debug,
                                        exit_pixel_cm=args.exit_pixel_cm,
-                                       exit_energy_bins=args.exit_energy_bins,
-                                       source_rate=args.source_rate)
+                                       exit_energy_bins=args.exit_energy_bins,)
 
                     print(f"Check if '{current_run.path}' exists: {os.path.isdir(current_run.path)}")
 
                     current_run.compile()
+                    if pile_code == 'a02':
+                        from python.gamma_saturation import run_saturation
+                        chain_file = args.chain_file or str(
+                            Path(current_run.materials.cross_sections).parent.parent / "chain_endfb81_fast.xml")
+                        run_saturation(current_run, chain_file, args.gamma_energy_bins)
+                        continue
                     statepoint = current_run.openmc()
                     if statepoint is not None:
                         current_run.extract_tallies(statepoint)

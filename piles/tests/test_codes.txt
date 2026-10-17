@@ -1,0 +1,7 @@
+
+
+Code    Description
+-----------------------------------------------------------------------
+001     Generic cube of natural uranium passively decayed over time to evolve inventory.
+        Initial NU isotopics from PNNL-15870 (2021). 
+        Mainly interested in Pa241m1 over time for its 1 MeV gamma line.

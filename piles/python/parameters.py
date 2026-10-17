@@ -16,6 +16,7 @@ ISOTOPES     = ['U238', 'Th232']
 TEMP_K       = 900   # use 294 K for room temp (to align with endf available temps)
 N_PARTICLES  = int(1e5)
 N_CYCLES     = int(100)
+EXCALIBUR_SOURCE_RATE = int(1e8) # [n/s] -- real Excalibur source rate is 5e8-8e8 n/s
 
 # Neutron exit maps. Edge bins also retain energies outside this log grid.
 EXIT_PIXEL_CM = 1.0
@@ -23,6 +24,8 @@ EXIT_ENERGY_BINS = 300
 EXIT_ENERGY_MIN_EV = 1e-5
 EXIT_ENERGY_MAX_EV = 20e6
 EXIT_MODE_MAX_REL_ERROR = 0.5
+
+A02_IR_TIME = 3600.0 # [s] Irradiation time for a02; source stays on.
 
 
 # ------------------------------------------------

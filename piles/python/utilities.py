@@ -4,18 +4,6 @@ from scipy.optimize import fsolve
 
 from python.parameters import *
 
-class C:
-    RED = '\033[91m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    BLUE = '\033[94m'
-    MAGENTA = '\033[95m'
-    CYAN = '\033[96m'
-    WHITE = '\033[97m'
-    BOLD = '\033[1m'
-    UL = '\033[4m'
-    END = '\033[0m'  # Reset to default
-
 
 def density_flibe(temp_k, pressure_kpa=101.325):
     """Calculate FLiBe density from Humrickhouse (2017), INL-44148.
